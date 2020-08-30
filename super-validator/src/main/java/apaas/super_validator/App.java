@@ -1,5 +1,4 @@
 package apaas.super_validator;
-
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.Email;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import apaas.support.validator.MapNotNull;
+import apaas.support.annotion.MapNotNull;
 
 /**
  * Hello world!

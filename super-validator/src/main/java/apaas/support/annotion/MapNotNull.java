@@ -1,4 +1,4 @@
-package apaas.support.validator;
+package apaas.support.annotion;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
@@ -16,6 +16,8 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.Payload;
+
+import apaas.support.validator.MapNotNullValidator;
 
 /**
  * 

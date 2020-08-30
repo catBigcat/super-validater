@@ -81,7 +81,46 @@ public class MapNotNullValidatorTest {
 						"}" );
 		Assert.isTrue( validator.isValid(objs, null));
 	}
+	public static class MyClass{
+		private String key1;
+		private MyClass key2; 
+		public String getKey1() {
+			return key1;
+		}
+
+		public void setKey1(String key1) {
+			this.key1 = key1;
+		}
+
+		public MyClass getKey2() {
+			return key2;
+		}
+
+		public void setKey2(MyClass key2) {
+			this.key2 = key2;
+		}
+		
+	}
 	
+	
+	@Test
+	public void testObject() {
+		MapNotNullValidator validator = new MapNotNullValidator();
+		validator.init("key1");
+		MyClass obj = new MyClass();
+		obj.key1="hello1";
+		Assert.isTrue( validator.isValid(obj, null));
+		obj.key1=null;
+		Assert.isTrue( ( occurException(()-> validator.isValid(obj, null),ConstraintDeclarationException.class)) );
+		obj.key2 = new MyClass();
+		obj.key2.key1="1";
+		MapNotNullValidator validator2 = new MapNotNullValidator();
+		validator2.init("key2.key1");
+		Assert.isTrue( validator2.isValid(obj, null));
+		obj.key2.key1=null;
+		Assert.isTrue( ( occurException(()-> validator2.isValid(obj, null),ConstraintDeclarationException.class)) );
+		
+	}
 	
 	private <T extends Exception> boolean occurException( Runnable func , Class<T > clazz  ) {
 		try {
@@ -94,4 +133,5 @@ public class MapNotNullValidatorTest {
 		return false;
 		
 	}
+	
 }
